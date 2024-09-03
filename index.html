@@ -1,4 +1,273 @@
-document.getElementById("connect-wallet").style.display = 'inline';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MACX Cryptocurrency - Your gateway to maximum power in crypto investments.">
+    <meta name="keywords" content="MACX, Cryptocurrency, Crypto Investment, Blockchain, Ethereum">
+    <meta name="author" content="MACX Team">
+    <title>MACX Crypto Sale</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            text-transform: uppercase;
+            color: #00e5ff;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #bbdefb;
+        }
+
+        .wallet-connect-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .wallet-button {
+            padding: 10px 20px;
+            background-color: #03a9f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .wallet-button:hover {
+            background-color: #0288d1;
+            transform: scale(1.05);
+        }
+
+        .product-card {
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .card-3d {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(135deg, #ff6f00, #ff8f00);
+            color: #ffffff;
+            border-radius: 15px;
+            transform-style: preserve-3d;
+            transform: rotateY(0deg);
+            transition: transform 0.6s ease;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-3d:hover {
+            transform: rotateY(180deg);
+        }
+
+        .card-3d h2 {
+            text-align: center;
+            padding-top: 30px;
+            font-size: 1.8em;
+        }
+
+        .card-3d p {
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .buy-now-button {
+            display: block;
+            text-align: center;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #1e88e5, #00acc1);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background 0.4s, transform 0.4s;
+            font-size: 1.2em;
+        }
+
+        .buy-now-button:hover {
+            background: linear-gradient(135deg, #039be5, #00bcd4);
+            transform: scale(1.1);
+        }
+
+        .details, .whitepaper, .about-us, .faq {
+            margin-bottom: 40px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .details h2, .whitepaper h2, .about-us h2, .faq h2 {
+            font-size: 1.8em;
+            color: #00e5ff;
+            margin-bottom: 20px;
+        }
+
+        /* Whitepaper Download Button */
+        .download-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ff4081, #f50057);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            transition: background 0.4s, transform 0.4s;
+        }
+
+        .download-button:hover {
+            background: linear-gradient(135deg, #f50057, #c51162);
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .card-3d {
+                width: 100%;
+            }
+
+            .wallet-connect-buttons {
+                position: relative;
+                top: 0;
+                right: 0;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wallet-connect-buttons">
+        <button id="connect-wallet" class="wallet-button">Connect Wallet</button>
+        <button id="disconnect-wallet" class="wallet-button" style="display:none;">Disconnect Wallet</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>MACX Cryptocurrency</h1>
+            <p>Your gateway to maximum power in crypto investments</p>
+        </header>
+
+        <div class="content">
+            <section class="product-card">
+                <div class="card-3d">
+                    <h2>MACX Token</h2>
+                    <p>Symbol: <strong>MACX</strong></p>
+                    <p>Network: <strong>BNB</strong></p>
+                    <p>Contract Address: <strong>0xYourContractAddress</strong></p>
+                    <a href="https://commerce.coinbase.com/checkout/26b85e66-0d64-492e-9331-97828dbd764f" class="buy-now-button">Buy Now</a>
+                </div>
+            </section>
+
+            <section class="details">
+                <h2>Cryptocurrency Details</h2>
+                <p>MACX is a cutting-edge cryptocurrency designed to bring maximum power to your portfolio...</p>
+            </section>
+
+            <section class="whitepaper">
+                <h2>Whitepaper</h2>
+                <p>Learn everything about MACX in our comprehensive whitepaper.</p>
+                <a href="path-to-your-whitepaper.pdf" class="download-button">Download Whitepaper</a>
+            </section>
+
+            <section class="about-us">
+                <h2>About Us</h2>
+                <p>MACX is powered by a dedicated team of blockchain experts...</p>
+            </section>
+
+            <section class="faq">
+                <h2>FAQ</h2>
+                <p>Have questions? We have answers. Find out more about MACX...</p>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        async function connectWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const provider = new ethers.providers.Web3Provider(window.ethereum);
+                    await provider.send("eth_requestAccounts", []);
+                    const signer = provider.getSigner();
+                    const address = await signer.getAddress();
+
+                    console.log('Wallet connected:', address);
+                    alert('Wallet connected: ' + address);
+
+                    document.getElementById("connect-wallet").style.display = 'none';
+                    document.getElementById("disconnect-wallet").style.display = 'inline';
+                } catch (error) {
+                    console.error('Error connecting to wallet:', error);
+                    alert('Error connecting to wallet: ' + error.message);
+                }
+            } else {
+                alert('No Ethereum-compatible browser detected. Install MetaMask or another wallet.');
+            }
+        }
+
+        async function disconnectWallet() {
+            // Simulate disconnection by refreshing the page
+            console.log('Wallet disconnected');
+            alert('Wallet disconnected');
+
+             document.getElementById("connect-wallet").style.display = 'inline';
             document.getElementById("disconnect-wallet").style.display = 'none';
 
             // Optionally, you can reset the state or reload the page
@@ -9,4 +278,4 @@ document.getElementById("connect-wallet").style.display = 'inline';
         document.getElementById("disconnect-wallet").addEventListener("click", disconnectWallet);
     </script>
 </body>
-</html>
+                        </html>
