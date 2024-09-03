@@ -1,0 +1,12 @@
+document.getElementById("connect-wallet").style.display = 'inline';
+            document.getElementById("disconnect-wallet").style.display = 'none';
+
+            // Optionally, you can reset the state or reload the page
+            location.reload(); // This refreshes the page to "disconnect" the wallet
+        }
+
+        document.getElementById("connect-wallet").addEventListener("click", connectWallet);
+        document.getElementById("disconnect-wallet").addEventListener("click", disconnectWallet);
+    </script>
+</body>
+</html>
