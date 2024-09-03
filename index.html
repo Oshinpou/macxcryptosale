@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="MACX Cryptocurrency - Your gateway to maximum power in crypto investments.">
-    <meta name="keywords" content="MACX, Cryptocurrency, Crypto Investment, Blockchain, Ethereum">
+    <meta name="keywords" content="MACX, Cryptocurrency, Crypto Investment, Blockchain, Ethereum, BNB">
     <meta name="author" content="MACX Team">
     <title>MACX Crypto Sale</title>
-    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
     <style>
         /* General Styling */
@@ -245,6 +244,13 @@
                 try {
                     const provider = new ethers.providers.Web3Provider(window.ethereum);
                     await provider.send("eth_requestAccounts", []);
+
+                    // Check if connected to Binance Smart Chain (BSC)
+                    const network = await provider.getNetwork();
+                    if (network.chainId !== 56) { // BSC mainnet chainId
+                        throw new Error('Please connect to the Binance Smart Chain network.');
+                    }
+
                     const signer = provider.getSigner();
                     const address = await signer.getAddress();
 
@@ -263,11 +269,11 @@
         }
 
         async function disconnectWallet() {
-            // Simulate disconnection by refreshing the page
             console.log('Wallet disconnected');
             alert('Wallet disconnected');
 
-             document.getElementById("connect-wallet").style.display = 'inline';
+            // Simulate disconnection by refreshing the page
+            document.getElementById("connect-wallet").style.display = 'inline';
             document.getElementById("disconnect-wallet").style.display = 'none';
 
             // Optionally, you can reset the state or reload the page
@@ -278,4 +284,4 @@
         document.getElementById("disconnect-wallet").addEventListener("click", disconnectWallet);
     </script>
 </body>
-                        </html>
+</html>
