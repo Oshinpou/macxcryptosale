@@ -29,6 +29,7 @@
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             animation: fadeIn 1.5s ease-in-out;
+            position: relative;
         }
 
         header {
@@ -190,6 +191,15 @@
                 margin-bottom: 20px;
             }
         }
+
+        /* Image Styling */
+        .banner-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
     </style>
 </head>
 <body>
@@ -203,6 +213,9 @@
             <h1>MACX Cryptocurrency</h1>
             <p>Your gateway to maximum power in crypto investments</p>
         </header>
+
+        <!-- Image -->
+        <img src="path-to-your-image.jpg" alt="MACX Banner" class="banner-image">
 
         <div class="content">
             <section class="product-card">
@@ -244,7 +257,7 @@
                 try {
                     const provider = new ethers.providers.Web3Provider(window.ethereum);
                     await provider.send("eth_requestAccounts", []);
-
+                    
                     // Check if connected to Binance Smart Chain (BSC)
                     const network = await provider.getNetwork();
                     if (network.chainId !== 56) { // BSC mainnet chainId
@@ -254,7 +267,7 @@
                     const signer = provider.getSigner();
                     const address = await signer.getAddress();
 
-                    console.log('Wallet connected:', address);
+                console.log('Wallet connected:', address);
                     alert('Wallet connected: ' + address);
 
                     document.getElementById("connect-wallet").style.display = 'none';
