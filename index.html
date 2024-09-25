@@ -7,7 +7,7 @@
     <meta name="keywords" content="MACX, Cryptocurrency, Crypto Investment, Blockchain, Ethereum, BNB">
     <meta name="author" content="MACX Team">
     <title>MACX Crypto Sale</title>
-    
+
     <style>
         /* General Styling */
         body {
@@ -20,7 +20,7 @@
         }
 
         .container {
-            width: 80%;
+            width: 90%;
             max-width: 1200px;
             padding: 20px;
             margin: 0 auto;
@@ -84,13 +84,25 @@
             color: #ffffff;
             border-radius: 15px;
             transform-style: preserve-3d;
-            transform: rotateY(0deg);
+            transform: translateZ(0);
             transition: transform 0.6s ease;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .card-3d:hover {
-            transform: rotateY(180deg);
+            animation: bounce 0.5s ease-in-out forwards;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
 
         .card-3d h2 {
@@ -150,6 +162,13 @@
             transform: scale(1.1);
         }
 
+        /* Small Text Styling */
+        .small-text {
+            font-size: 0.9em;
+            line-height: 1.5;
+            color: #bbdefb;
+        }
+
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -175,7 +194,7 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
-                width: 90%;
+                width: 95%;
             }
 
             .card-3d {
@@ -202,15 +221,17 @@
         }
     </style>
 
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 </head>
 <body>
-    
-
     <div class="container">
         <header>
             <h1>MACX Cryptocurrency</h1>
             <p>Your gateway to maximum power in crypto investments</p>
+            <div class="wallet-connect-buttons">
+                <button id="connect-wallet" class="wallet-button">Connect Wallet</button>
+                <button id="disconnect-wallet" class="wallet-button" style="display:none;">Disconnect Wallet</button>
+            </div>
         </header>
 
         <!-- Image -->
@@ -229,7 +250,7 @@
 
             <section class="details">
                 <h2>Cryptocurrency Details</h2>
-                <p>MACX is a cutting-edge cryptocurrency designed to bring maximum power to your portfolio...</p>
+                <p>MACX is a cutting-edge cryptocurrency designed to bring maximum power to your portfolio through innovative technology and robust security protocols.</p>
             </section>
 
             <section class="whitepaper">
@@ -240,62 +261,61 @@
 
             <section class="about-us">
                 <h2>About Us</h2>
-                <p>MACX is powered by a dedicated team of blockchain experts...</p>
+                <p>MACX is powered by a dedicated team of blockchain experts committed to creating a secure and efficient cryptocurrency ecosystem.</p>
+            </section>
+
+            <section class="roadmap">
+                <h2>Roadmap</h2>
+                <p>Q1 2024: Launch of MACX Token<br>
+                Q2 2024: Partnership with Exchanges<br>
+                Q3 2024: Mobile Wallet Development<br>
+                Q4 2024: Community Engagement Programs</p>
+            </section>
+
+            <section class="audit">
+                <h2>Security Audit</h2>
+                <p>MACX is audited by leading blockchain security firms to ensure maximum safety for our investors. Regular updates will be provided to keep the community informed.</p>
             </section>
 
             <section class="faq">
-                <h2>FAQ</h2>
-                <p>Have questions? We have answers. Find out more about MACX...</p>
+                <h2>Frequently Asked Questions</h2>
+                <p><strong>What is MACX?</strong> <br>
+                MACX is a cryptocurrency focused on delivering exceptional investment opportunities through innovative technology.</p>
+                <p><strong>How can I purchase MACX?</strong><br>
+                You can purchase MACX through our website by connecting your wallet and using the available payment options.</p>
             </section>
+
         </div>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+
     <script>
+        // JavaScript for wallet connection
+        const connectWalletButton = document.getElementById('connect-wallet');
+        const disconnectWalletButton = document.getElementById('disconnect-wallet');
+
         async function connectWallet() {
-            if (typeof window.ethereum !== 'undefined') {
+            if (window.ethereum) {
                 try {
-                    const provider = new ethers.providers.Web3Provider(window.ethereum);
-                    await provider.send("eth_requestAccounts", []);
-                    
-                    // Check if connected to Binance Smart Chain (BSC)
-                    const network = await provider.getNetwork();
-                    if (network.chainId !== 56) { // BSC mainnet chainId
-                        throw new Error('Please connect to the Binance Smart Chain network.');
-                    }
-
-                    const signer = provider.getSigner();
-                    const address = await signer.getAddress();
-
-                console.log('Wallet connected:', address);
-                    alert('Wallet connected: ' + address);
-
-                    document.getElementById("connect-wallet").style.display = 'none';
-                    document.getElementById("disconnect-wallet").style.display = 'inline';
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    console.log('Connected:', accounts[0]);
+                    connectWalletButton.style.display = 'none';
+                    disconnectWalletButton.style.display = 'inline-block';
                 } catch (error) {
-                    console.error('Error connecting to wallet:', error);
-                    alert('Error connecting to wallet: ' + error.message);
+                    console.error('Connection Error:', error);
                 }
             } else {
-                alert('No Ethereum-compatible browser detected. Install MetaMask or another wallet.');
+                alert('Please install MetaMask!');
             }
         }
 
-        async function disconnectWallet() {
-            console.log('Wallet disconnected');
-            alert('Wallet disconnected');
-
-            // Simulate disconnection by refreshing the page
-            document.getElementById("connect-wallet").style.display = 'inline';
-            document.getElementById("disconnect-wallet").style.display = 'none';
-
-            // Optionally, you can reset the state or reload the page
-            location.reload(); // This refreshes the page to "disconnect" the wallet
+        function disconnectWallet() {
+            console.log('Disconnected');
+            connectWalletButton.style.display = 'inline-block';
+            disconnectWalletButton.style.display = 'none';
         }
 
-        document.getElementById("connect-wallet").addEventListener("click", connectWallet);
-        document.getElementById("disconnect-wallet").addEventListener("click", disconnectWallet);
+        connectWalletButton.addEventListener('click', connectWallet);
+        disconnectWalletButton.addEventListener('click', disconnectWallet);
     </script>
-
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 </body>
 </html>
