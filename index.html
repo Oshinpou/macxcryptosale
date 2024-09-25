@@ -7,7 +7,7 @@
     <meta name="keywords" content="MACX, Cryptocurrency, Crypto Investment, Blockchain, Ethereum, BNB">
     <meta name="author" content="MACX Team">
     <title>MACX Crypto Sale</title>
-
+    
     <style>
         /* General Styling */
         body {
@@ -20,7 +20,7 @@
         }
 
         .container {
-            width: 90%;
+            width: 80%;
             max-width: 1200px;
             padding: 20px;
             margin: 0 auto;
@@ -83,26 +83,13 @@
             background: linear-gradient(135deg, #ff6f00, #ff8f00);
             color: #ffffff;
             border-radius: 15px;
-            transform-style: preserve-3d;
-            transform: translateZ(0);
-            transition: transform 0.6s ease;
+            transform: scale(1);
+            transition: transform 0.6s ease-in-out;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .card-3d:hover {
-            animation: bounce 0.5s ease-in-out forwards;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
+            transform: scale(1.1);
         }
 
         .card-3d h2 {
@@ -134,12 +121,12 @@
             transform: scale(1.1);
         }
 
-        .details, .whitepaper, .about-us, .faq {
+        .details, .whitepaper, .about-us, .faq, .roadmap, .audit {
             margin-bottom: 40px;
             animation: fadeInUp 1.5s ease-in-out;
         }
 
-        .details h2, .whitepaper h2, .about-us h2, .faq h2 {
+        .details h2, .whitepaper h2, .about-us h2, .faq h2, .roadmap h2, .audit h2 {
             font-size: 1.8em;
             color: #00e5ff;
             margin-bottom: 20px;
@@ -160,13 +147,6 @@
         .download-button:hover {
             background: linear-gradient(135deg, #f50057, #c51162);
             transform: scale(1.1);
-        }
-
-        /* Small Text Styling */
-        .small-text {
-            font-size: 0.9em;
-            line-height: 1.5;
-            color: #bbdefb;
         }
 
         @keyframes fadeIn {
@@ -194,7 +174,7 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
-                width: 95%;
+                width: 90%;
             }
 
             .card-3d {
@@ -221,17 +201,12 @@
         }
     </style>
 
-    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>MACX Cryptocurrency</h1>
             <p>Your gateway to maximum power in crypto investments</p>
-            <div class="wallet-connect-buttons">
-                <button id="connect-wallet" class="wallet-button">Connect Wallet</button>
-                <button id="disconnect-wallet" class="wallet-button" style="display:none;">Disconnect Wallet</button>
-            </div>
         </header>
 
         <!-- Image -->
@@ -250,72 +225,64 @@
 
             <section class="details">
                 <h2>Cryptocurrency Details</h2>
-                <p>MACX is a cutting-edge cryptocurrency designed to bring maximum power to your portfolio through innovative technology and robust security protocols.</p>
+                <p>MACX is a cutting-edge cryptocurrency designed to bring maximum power to your portfolio...</p>
             </section>
 
             <section class="whitepaper">
                 <h2>Whitepaper</h2>
-                <p>Learn everything about MACX in our comprehensive whitepaper.</p>
-                <a href="path-to-your-whitepaper.pdf" class="download-button">Download Whitepaper</a>
-            </section>
+                <p style="font-size: 0.9em;">The MACX cryptocurrency is an innovative digital asset designed to revolutionize the world of blockchain investments. With a strong focus on security, speed, and transparency, MACX offers users a robust decentralized finance (DeFi) experience on the Binance Smart Chain (BSC). Our token aims to provide users with efficient, low-fee transactions while maintaining the highest level of decentralization. MACX is the native token for the entire ecosystem, and it will be integral in future developments such as staking, governance, and ecosystem rewards.</p>
+                <p style="font-size: 0.9em;">The MACX team comprises blockchain experts, seasoned developers, and crypto enthusiasts, all focused on building a sustainable, secure, and scalable product for long-term use. The tokenomics are designed to balance both early and long-term participants through a fair distribution model. We have completed several audits to ensure the safety of our smart contract, making MACX a trusted investment opportunity.</p>
+                <p style="font-size: 0.9em;">The roadmap for MACX includes the expansion of partnerships with decentralized exchanges, the launch of a user-friendly staking platform, and the introduction of governance models that will allow token holders to participate in shaping the future of the project. Additionally, MACX will integrate with popular decentralized applications (dApps), allowing users to leverage the token for real-world utility and transactions.</p>
+                <p style="font-size: 0.9em;">By investing in MACX, you're not just buying a token; you're supporting a vision for the future of decentralized finance. We believe in empowering individuals with the tools to manage their financial futures through the use of blockchain technology. Join us in this journey towards decentralized finance with maximum power and control in your hands. MACX is poised to be a game-changer, with ongoing development to enhance the token’s utility and usability within the DeFi ecosystem. Our transparent approach, combined with a focus on innovation and security, ensures that MACX will thrive in the rapidly evolving crypto space.</p>
 
-            <section class="about-us">
-                <h2>About Us</h2>
-                <p>MACX is powered by a dedicated team of blockchain experts committed to creating a secure and efficient cryptocurrency ecosystem.</p>
-            </section>
+<!-- Whitepaper Download Button -->
+            <a href="macx_whitepaper.pdf" class="download-button" download>Download Whitepaper</a>
+        </section>
 
-            <section class="roadmap">
-                <h2>Roadmap</h2>
-                <p>Q1 2024: Launch of MACX Token<br>
-                Q2 2024: Partnership with Exchanges<br>
-                Q3 2024: Mobile Wallet Development<br>
-                Q4 2024: Community Engagement Programs</p>
-            </section>
+        <!-- Roadmap Section -->
+        <section class="roadmap">
+            <h2>Roadmap</h2>
+            <ul>
+                <li><strong>Q1 2024:</strong> Token launch on Binance Smart Chain (BSC), smart contract audit completion, initial exchange listing.</li>
+                <li><strong>Q2 2024:</strong> Partnerships with decentralized exchanges, staking platform introduction, initial governance token launch.</li>
+                <li><strong>Q3 2024:</strong> Full-scale decentralized application (dApp) integration, more exchange listings, cross-chain interoperability development.</li>
+                <li><strong>Q4 2024:</strong> Community governance, reward distribution system implementation, and MACX marketplace launch.</li>
+            </ul>
+        </section>
 
-            <section class="audit">
-                <h2>Security Audit</h2>
-                <p>MACX is audited by leading blockchain security firms to ensure maximum safety for our investors. Regular updates will be provided to keep the community informed.</p>
-            </section>
-
-            <section class="faq">
-                <h2>Frequently Asked Questions</h2>
-                <p><strong>What is MACX?</strong> <br>
-                MACX is a cryptocurrency focused on delivering exceptional investment opportunities through innovative technology.</p>
-                <p><strong>How can I purchase MACX?</strong><br>
-                You can purchase MACX through our website by connecting your wallet and using the available payment options.</p>
-            </section>
-
-        </div>
+        <!-- Audit Section -->
+        <section class="audit">
+            <h2>Security Audit</h2>
+            <p>MACX has undergone a rigorous security audit by a top blockchain security firm. The audit report confirms the safety and reliability of the MACX token smart contract, ensuring that your investments are protected. The detailed audit results can be downloaded below:</p>
+            <a href="macx_audit.pdf" class="download-button" download>Download Audit Report</a>
+        </section>
     </div>
 
-    <script>
-        // JavaScript for wallet connection
-        const connectWalletButton = document.getElementById('connect-wallet');
-        const disconnectWalletButton = document.getElementById('disconnect-wallet');
+    <!-- Wallet Connect Buttons -->
+    <div class="wallet-connect-buttons">
+        <button class="wallet-button" id="connect-wallet">Connect Wallet</button>
+    </div>
+</div>
 
-        async function connectWallet() {
-            if (window.ethereum) {
-                try {
-                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    console.log('Connected:', accounts[0]);
-                    connectWalletButton.style.display = 'none';
-                    disconnectWalletButton.style.display = 'inline-block';
-                } catch (error) {
-                    console.error('Connection Error:', error);
-                }
-            } else {
-                alert('Please install MetaMask!');
+<script>
+    document.getElementById('connect-wallet').addEventListener('click', async () => {
+        if (typeof window.ethereum !== 'undefined') {
+            try {
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                alert('Connected account: ' + accounts[0]);
+            } catch (error) {
+                alert('Failed to connect wallet: ' + error.message);
             }
+        } else {
+            alert('MetaMask not detected. Please install MetaMask to use this feature.');
         }
+    });
+</script>
 
-        function disconnectWallet() {
-            console.log('Disconnected');
-            connectWalletButton.style.display = 'inline-block';
-            disconnectWalletButton.style.display = 'none';
-        }
-
-        connectWalletButton.addEventListener('click', connectWallet);
-        disconnectWalletButton.addEventListener('click', disconnectWallet);
-    </script>
 </body>
 </html>
+
+
+
+
+
